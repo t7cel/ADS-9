@@ -6,31 +6,36 @@
 #include <iostream>
 
 class PMTree {
-public:
-    using char_vector = std::vector<char>;
-    using tree_node = struct Node;
-
+ public:
     struct Node {
-        char data;
-        std::vector<Node*> children;
-        Node(char val) : data(val) {}
+        char value;
+        std::vector<std::unique_ptr<Node>> children;
+        Node(char val) : value(val) {}
     };
 
-    PMTree(const char_vector& input);
-    ~PMTree();
+    explicit PMTree(const std::vector<char>& elements);
+    ~PMTree() = default;
 
-    std::vector<char_vector> getAllPerms();
-    char_vector getPerm1(int num);
-    char_vector getPerm2(int num); 
+    std::vector<std::vector<char>> getAllPerms() const;
+    std::vector<char> getPerm1(int num) const;
+    std::vector<char> getPerm2(int num) const;
 
-private:
-    Node* root;
+ private:
+    std::unique_ptr<Node> root;
+    int totalPermutations;
 
-    Node* buildTree(const char_vector& input);
-    void getAllPermsRecursive(Node* node, char_vector currentPerm, std::vector<char_vector>& allPerms);
-    void deleteTree(Node* node);
-
-    Node* navigateToNode(int permNumber);
-    int calculatePermutationIndex(Node* node);
+    void buildTree(Node* parent, const std::vector<char>& remaining);
+    void collectPerms(const Node* node, std::vector<char>& current,
+                         std::vector<std::vector<char>>& result) const;
+    bool getPermByTraversal(const Node* node, int& remaining,
+                               std::vector<char>& result) const;
+    bool getPermByNavigation(const Node* node, int remaining,
+                                std::vector<char>& result) const;
+    int factorial(int n) const;
 };
+
+std::vector<std::vector<char>> getAllPerms(const PMTree& tree);
+std::vector<char> getPerm1(const PMTree& tree, int num);
+std::vector<char> getPerm2(const PMTree& tree, int num);
+
 #endif  // INCLUDE_TREE_H_
