@@ -2,40 +2,19 @@
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <vector>
-#include <algorithm>
-#include <iostream>
+#include <string>
 
 class PMTree {
- public:
-    struct Node {
-        char value;
-        std::vector<std::unique_ptr<Node>> children;
-        Node(char val) : value(val) {}
-    };
+public:
+    char value;
+    std::vector<PMTree*> children;
 
-    explicit PMTree(const std::vector<char>& elements);
-    ~PMTree() = default;
-
-    std::vector<std::vector<char>> getAllPerms() const;
-    std::vector<char> getPerm1(int num) const;
-    std::vector<char> getPerm2(int num) const;
-
- private:
-    std::unique_ptr<Node> root;
-    int totalPermutations;
-
-    void buildTree(Node* parent, const std::vector<char>& remaining);
-    void collectPerms(const Node* node, std::vector<char>& current,
-                         std::vector<std::vector<char>>& result) const;
-    bool getPermByTraversal(const Node* node, int& remaining,
-                               std::vector<char>& result) const;
-    bool getPermByNavigation(const Node* node, int remaining,
-                                std::vector<char>& result) const;
-    int factorial(int n) const;
+    PMTree(std::vector<char> input);
+    ~PMTree();
 };
 
-std::vector<std::vector<char>> getAllPerms(const PMTree& tree);
-std::vector<char> getPerm1(const PMTree& tree, int num);
-std::vector<char> getPerm2(const PMTree& tree, int num);
+std::vector<std::vector<char>> getAllPerms(PMTree& tree);
+std::vector<char> getPerm1(PMTree& tree, int num);
+std::vector<char> getPerm2(PMTree& tree, int num);
 
 #endif  // INCLUDE_TREE_H_
