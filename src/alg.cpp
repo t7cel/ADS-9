@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cmath>
 #include  "tree.h"
+#include <functional>
+#include <vector>
 
 PMTree::~PMTree() {
     for (PMTree* child : children) {
