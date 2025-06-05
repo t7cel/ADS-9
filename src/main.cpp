@@ -41,6 +41,5 @@ int main() {
         std::cout << c;
     }
     std::cout << std::endl;
-  
   return 0;
 }
