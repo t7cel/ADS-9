@@ -6,11 +6,11 @@
 
 class PMTree {
 public:
+    explicit PMTree(std::vector<char> input);
+    ~PMTree();
     char value;
     std::vector<PMTree*> children;
 
-    PMTree(std::vector<char> input);
-    ~PMTree();
 };
 
 std::vector<std::vector<char>> getAllPerms(PMTree& tree);
