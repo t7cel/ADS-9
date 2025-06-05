@@ -1,10 +1,10 @@
 // Copyright 2022 NNTU-CS
-#include  "tree.h"
 #include <algorithm>
 #include <iostream>
 #include <cmath>
 #include <functional>
 #include <vector>
+#include  "tree.h"
 
 PMTree::~PMTree() {
     for (PMTree* child : children) {
@@ -66,7 +66,8 @@ std::vector<char> getPerm2(PMTree& tree, int num) {
     std::vector<char> permutation;
     std::vector<char> available_chars;
     std::function<bool(PMTree*, int, std::vector<char>&)> find_permutation =
-        [&](PMTree* node, int k, std::vector<char>& current_permutation) -> bool {
+        [&](PMTree* node, int k, std::vector<char>& current_permutation) 
+           -> bool {
         if (node->children.empty()) {
             if (k == 1) {
                 return true;
