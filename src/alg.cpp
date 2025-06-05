@@ -3,6 +3,8 @@
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
+#include <queue>
+#include <cmath>
 #include  "tree.h"
 
 PMTree::PMTree(const char_vector& input) : root(nullptr) {
