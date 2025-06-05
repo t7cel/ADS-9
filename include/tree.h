@@ -5,12 +5,11 @@
 #include <string>
 
 class PMTree {
-public:
+ public:
     explicit PMTree(std::vector<char> input);
     ~PMTree();
     char value;
     std::vector<PMTree*> children;
-
 };
 
 std::vector<std::vector<char>> getAllPerms(PMTree& tree);
