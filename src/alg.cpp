@@ -1,8 +1,8 @@
 // Copyright 2022 NNTU-CS
+#include  "tree.h"
 #include <algorithm>
 #include <iostream>
 #include <cmath>
-#include  "tree.h"
 #include <functional>
 #include <vector>
 
@@ -76,7 +76,7 @@ std::vector<char> getPerm2(PMTree& tree, int num) {
 
         int count = 0;
         for (PMTree* child : node->children) {
-            std::function<int(PMTree*)> count_permutations = 
+            std::function<int(PMTree*)> count_permutations =
                 [&](PMTree* subtree) -> int {
                 if (subtree->children.empty()) {
                     return 1;
@@ -97,7 +97,6 @@ std::vector<char> getPerm2(PMTree& tree, int num) {
                     return true;
                 }
                 return false;
-
             }
             k -= num_perms_under_child;
         }
